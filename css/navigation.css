@@ -1,0 +1,96 @@
+/* 
+> Създал Borislav Jordanov 11a N=5
+> Logfile на работата върху "Project_x"
+> Цел на проекта: изработка на php уеб сайт с рисуван дизайн и MYSQL база данни 
+> Файлът е създаден на: 15.03.2012
+> Последната промяна е записана в последната достигната стъпка на проекта
+> CSS / стиловете на менюто
+ */
+* {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	background-color: #eee;
+}
+
+.navigation {
+	position: fixed;
+	top: 300px;
+}
+
+.navigation li {
+	width: 25px;
+	height: 50px;
+	background-color: #ccc;
+	margin: 3px;
+	overflow: hidden;
+	border-radius: 5px;
+	border: 1px solid #666;
+	white-space: nowrap;
+	font-size: 32px;
+	line-height: 50px;
+	padding: 0 5px;
+	opacity: .3;
+	text-shadow: 1px 1px 0 #fff;
+	font-family: Helvetica,arial,freesans,clean,sans-serif;
+	-webkit-transition-property: width, opacity; 			/* animate properties for chrome */
+	-webkit-transition-duration: .300s, .300s; 				/* animation duration for chrome */
+	-o-transition-property: width, opacity; 			/* animate properties for opera */
+	-o-transition-duration: .300s, .300s; 				/* animation duration for opera */
+	-moz-animation-duration: .300s; 						/* animation duration for mozilla */
+	-moz-animation-name: slidein; 							/* mozilla animation name */
+}
+
+.navigation li:target,
+.navigation li:hover {
+	width: 130px;
+	opacity: 1;
+	box-shadow: 0 0 10px #333;
+	-webkit-transition-property: width, opacity, box-shadow; 			/* animate properties for chrome */
+	-webkit-transition-duration: .300s, .300s, .300s; 					/* animation duration for chrome */
+	-o-transition-property: width, opacity; 							/* animate properties for opera */
+	-o-transition-duration: .300s, .300s; 								/* animation duration for opera */
+	-moz-animation-duration: .300s; 									/* animation duration for mozilla */
+	-moz-animation-name: slideout; 										/* mozilla animation name */
+}
+
+.navigation li a {
+	color: #333;
+	display: block;
+	text-decoration: none;
+}
+
+.navigation li a:first-letter {
+	font-weight: bold;
+	padding-right: 7px;
+	color: #fff;
+	text-shadow: 1px 2px 0 #000;
+}
+
+/* mozilla animation definitions */
+/* slideout animation */
+@-moz-keyframes slideout {
+	from {
+		width: 25px;
+		opacity: .3;
+	}
+	to {
+		width: 130px;
+		opacity: 1;
+		box-shadow: 0 0 10px #333;
+	}
+}
+/* slidein animation */
+@-moz-keyframes slidein {
+	from {
+		width: 130px;
+		opacity: 1;
+		box-shadow: 0 0 10px #333;
+	}
+	to {
+		width: 25px;
+		opacity: .3;
+	}
+}
