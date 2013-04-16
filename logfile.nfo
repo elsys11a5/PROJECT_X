@@ -1,0 +1,117 @@
+﻿/*
+> Създал Borislav Jordanov 11a N=5
+> Logfile на работата върху "Project_x"
+> Цел на проекта: изработка на php уеб сайт с рисуван дизайн и MYSQL база данни 
+> Файлът е създаден на: 13.03.2012
+> Последната промяна е записана в последната достигната стъпка на проекта
+>
+*/
+
+Подготовка:
+1. Конфигуриране на "XAMPP" под Windows XP
+2. Конфигуриране на "PHPmyadmin"
+- fix на permission-ите и дупките
+- security fixes
+- update до последна версия на "PHPmyadmin" и преконфигуриране
+3. Проверка дали Appache работи чрез готов скрипт
+=> Работи
+4. Конфигуриране на "FileZilla server"
+- добавяне на user-и
+- задаване на права на user-ите
+- достъпване на сървъра и операции през "FileZilla" клиента.
+	-> Настройване на htdocs права в папките и подпапките
+	-> Задаване на права на файловете 755,777,644... etc.
+
+Начало на проекта:
+
+1.Създадох таблици в "PHPmyadmin" чрез команда към сървъра.
+__________________________________________________
+CREATE TABLE `users` (
+`id` int(11) NOT NULL auto_increment,
+`username` varchar(30) NOT NULL default '',
+`password` varchar(255) NOT NULL default '',
+`sex` varchar(40) NOT NULL default '',
+`email` varchar(40) NOT NULL default '',
+`skype` varchar(50) NOT NULL default 'Not Specified',
+`facebook` varchar(100) NOT NULL default 'Not Specified',
+`location` varchar(40) NOT NULL default 'Not Specified',
+PRIMARY KEY (`id`) 
+) ENGINE=MyISAM;
+_________________________________________________________
+
+/* Таблиците не ми харесаха изтрих ги и започнах от начало */
+РЕДАКЦИЯ 1:
+________________________________________________________
+CREATE TABLE `users` (
+`id` INT UNSIGNED NOT NULL AUTO_INCREMENT ,
+type ENUM( 'member' , 'admin' ) NOT NULL default 'member',
+`username` varchar(30) NOT NULL default '',
+`password` varchar(255) NOT NULL default '',
+`first_name` varchar (15) NOT NULL,
+`last_name` varchar (30) NOT NULL,
+`gender` ENUM('male',  'female') NOT NULL default 'male',
+`email` varchar(50) NOT NULL default '',
+`skype` varchar(50) NOT NULL default 'Not Specified',
+`facebook` varchar(150) NOT NULL default 'Not Specified',
+`location` varchar(100) NOT NULL default 'Not Specified',
+PRIMARY KEY (`id`),
+UNIQUE KEY (`email`),
+KEY (`email`, `password`)
+) ENGINE = MYISAM DEFAULT CHARSET = utf8;
+
+*бележка на автора* - тук нещо не ми харесва полето за парола... мисля, че
+му се задаваше някакъв хаш... ще го видим.
+_________________________________________________________
+
+/*
+По записките на "yibo" потребител в webtourist направих собствени полета,
+които по-късно ще бъдат използвани за изграждане на система, която използва
+> userlogin
+> user profile 
+> user logout
+> + cookies тоест запазване на сесията след затваряне на прозореца в browser-a.
+*/
+
+Създадох логически обвързана файлова система
+
+		-> config.php  /* или config.inc още не съм решил */
+ Разрешава бисквитки
+ Свързва базата данни по име парола и име на DB
+ Извлича информацията от таблица "users" , която по-горе
+ създадох и в която добавих полета с имена:
+ \id;type;username;password;first_name;last_name;gender;email;skype;facebook;location\
+ 
+/* 
+Kъдето ID е уникалният номер на регистриралият се потребител и се увеличава автоматично.
+type е типа на потребителя съответно - admin/user , което позволява задаване на различни привилегии
+username е името, с което потребителя достъпва сайта
+password е паролата, с която потребителя достъпва сайта
+first_name е първото име на потребителя
+last_name е последното име на потребителя
+gender е пола на потребителя
+email е електронният адрес на потребителя
+skype е skype-ът на потребителя
+facebook е връзка към facebook акаунта на потребителя 
+location е местожителството на потребителя 
+*/
+
+		-> login.php
+/*
+
+*/
+		-> logout.php
+		-> register.php
+		-> members.phп
+		-> editprofile.php
+		
+
+		
+Изготвяне на дизайн, който Ники ще кодне...
+няма да обяснявам как съм изготвял дизайна тук, тъй като
+тази част от проекта няма нищо общо с код.
+Идеята за дизайн е да бъде игрив - рисуван на ръка с мишка или пад
+и в същото време да не е инфантилен и детски, а просто красив, разчупен и ПРОСТ !
+Layer-ите са достатъчно ясно разграфени и разпределени в папки, така че да е удобно на
+колегата да си свърши работата.
+
+3. Изтеглям версия jquery-1.9.1.js от официалният сайт на JQUERRY с идея сайтът да използва java script
